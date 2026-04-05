@@ -29,7 +29,7 @@ Designed as a foundation for **physics simulation, robotics environments, and ph
   - `physics/` → physics engine
   - `renderer/` → rendering pipeline
   - `core/` → data structures
-  - `utils/` → numerical methods
+  - `Utility/` → numerical methods
 - Separation of concerns (physics vs rendering vs control)
 
 ---
