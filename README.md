@@ -73,8 +73,8 @@ C-Gravity-Simulator/
 ├── core/
 │ ├── body.h
 │
-├── utils/
-│ ├── integrator.h
+├── Utility/
+│ ├── Integrator.h
 ```
 
 ---
