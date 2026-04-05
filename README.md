@@ -21,17 +21,17 @@ This project demonstrates how fundamental physics equations can be translated in
 
 The simulation is based on Newtonian gravity:
 
-\[
+$$
 F = G \frac{m_1 m_2}{r^2}
-\]
+$$
 
 Each object:
 - Exerts gravitational force on every other object
 - Updates acceleration using Newton’s Second Law:
   
-\[
+$$
 F = ma \Rightarrow a = \frac{F}{m}
-\]
+$$
 
 - Updates velocity and position over time using numerical integration
 
