@@ -146,12 +146,12 @@ mingw-w64-ucrt-x86_64-glm
 ---
 
 ## 🧪 Build & Run
-'''Bash
+```Bash
 g++ main.cpp -o simulation \
 -lglfw3 -lglew32 -lopengl32 -lgdi32
 
 ./simulation
-'''
+```
 
 ---
 
