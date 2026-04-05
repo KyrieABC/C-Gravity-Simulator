@@ -1,105 +1,163 @@
-# 🌌 Gravity Simulation Engine (C++)
+# 🌌 N-Body Gravity Simulation Engine (C++ / OpenGL)
 
-A real-time physics-based gravity simulation built in C++, implementing Newtonian gravitational mechanics and numerical integration to simulate planetary motion and orbital dynamics.
+A real-time, physics-based N-body simulation engine built in C++ using modern graphics and mathematical libraries. This project models gravitational interactions between multiple bodies using Newtonian mechanics, enhanced with modular system design, collision handling, trajectory visualization, and improved numerical integration.
 
-This project demonstrates how fundamental physics equations can be translated into efficient computational systems for real-time simulation and visualization.
+Designed as a foundation for **physics simulation, robotics environments, and physical AI systems**, this project demonstrates both low-level system implementation and high-level simulation architecture.
 
 ---
 
-## 🚀 Features
+## 🚀 Key Features
 
-- 🪐 Real-time N-body gravitational simulation
-- 📐 Accurate implementation of Newton's Law of Gravitation
-- 🔁 Continuous motion using numerical integration (Euler / improved methods)
-- 🎮 Interactive visualization of moving bodies
-- ⚡ Efficient update loop for real-time performance
-- 🧱 Modular object-oriented architecture
+### 🧠 Physics Engine
+- Newtonian gravitational model (N-body problem)
+- Pairwise force computation (O(n²))
+- Mass-based acceleration updates
+- Collision detection and body merging
+
+### ⚙️ Advanced Simulation
+- Verlet integration for improved numerical stability
+- Real-time simulation loop
+- Configurable timestep (`dt`)
+
+### 🎨 Visualization
+- OpenGL-based rendering pipeline
+- Real-time particle rendering
+- Orbital trajectory trails (path visualization)
+
+### 🧱 Clean Architecture
+- Modular system design:
+  - `physics/` → physics engine
+  - `renderer/` → rendering pipeline
+  - `core/` → data structures
+  - `utils/` → numerical methods
+- Separation of concerns (physics vs rendering vs control)
 
 ---
 
 ## 🧠 Physics Model
 
-The simulation is based on Newtonian gravity:
+The simulation is based on Newton’s Law of Gravitation:
 
 $$
 F = G \frac{m_1 m_2}{r^2}
 $$
 
-Each object:
-- Exerts gravitational force on every other object
-- Updates acceleration using Newton’s Second Law:
-  
+Using Newton’s Second Law:
+
 $$
 F = ma \Rightarrow a = \frac{F}{m}
 $$
 
-- Updates velocity and position over time using numerical integration
+Motion is updated using **Verlet integration**:
+
+$$
+x_{t+dt} = x_t + v_t dt + \frac{1}{2} a_t dt^2
+$$
 
 ---
 
 ## 🏗️ System Architecture
-
-### Core Components
-
-#### 1. Physics Engine
-- Computes gravitational forces between all bodies
-- Handles vector math (distance, direction, normalization)
-- Updates acceleration, velocity, and position
-
-#### 2. Object Model
-Each celestial body contains:
-- Mass
-- Position (x, y)
-- Velocity (vx, vy)
-- Acceleration (ax, ay)
-
-#### 3. Simulation Loop
-- For each frame:
-  1. Compute forces
-  2. Update acceleration
-  3. Update velocity
-  4. Update position
-  5. Render objects
-
-#### 4. Rendering System
-- Displays objects in 2D space
-- Updates positions dynamically per frame
+'''
+gravity_sim/
+│
+├── main.cpp
+│
+├── physics/
+│ ├── physics.h
+│ ├── physics.cpp
+│
+├── renderer/
+│ ├── renderer.h
+│ ├── renderer.cpp
+│
+├── core/
+│ ├── body.h
+│
+├── utils/
+│ ├── integrator.h
+'''
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### Language
-- **C++**
+- C++ (C++17)
 
-### Libraries (Typical Implementation)
-- **SFML / SDL / OpenGL** (for rendering)
-- **GLM** (optional for vector math)
-- Standard C++ STL
+### Graphics
+- OpenGL  
+- GLFW  
+- GLEW  
 
-### Concepts Used
-- Object-Oriented Programming (OOP)
-- Numerical Methods (Euler Integration)
-- Vector Mathematics
-- Real-Time Simulation Loops
-- Physics Modeling
+### Mathematics
+- GLM  
+
+### Toolchain
+- MSYS2 + MinGW-w64  
+- g++ (GCC)
 
 ---
 
-## 🔄 Algorithm (Simplified)
+## 🔄 Simulation Workflow
+
+Each frame executes:
+
+1. Compute gravitational forces  
+2. Update acceleration  
+3. Integrate motion  
+4. Handle collisions  
+5. Render  
 
 ```cpp
-for each object i:
-    total_force = (0, 0)
+for each frame:
+    computeForces()
+    integrate(dt)
+    handleCollisions()
+    render()
+```
 
-    for each object j != i:
-        direction = position[j] - position[i]
-        distance = magnitude(direction)
-        force = G * m[i] * m[j] / (distance * distance)
-        total_force += normalize(direction) * force
+## 💥 Collision Handling
+- Detects proximity between bodies
+- Merges masses upon collision
+- Prevents numerical instability in close-range interactions
 
-    acceleration[i] = total_force / m[i]
+## 🌀 Trajectory Visualization
+- Stores historical positions of each body
+- Renders trails using line strips
+- Helps visualize orbital dynamics and system evolution
 
-for each object:
-    velocity += acceleration * dt
-    position += velocity * dt
+## ⚡ Performance Considerations
+- Time Complexity: O($x^2$)
+
+## 📦 Installation & Setup
+### Prerequisites
+- MSYS2 (UCRT64 recommended)
+- GCC (g++)
+- OpenGL support
+### Install Dependencies
+'''
+pacman -S --needed \
+mingw-w64-ucrt-x86_64-gcc \
+mingw-w64-ucrt-x86_64-glfw \
+mingw-w64-ucrt-x86_64-glew \
+mingw-w64-ucrt-x86_64-glm
+'''
+
+---
+
+## 🧪 Build & Run
+'''Bash
+g++ main.cpp -o simulation \
+-lglfw3 -lglew32 -lopengl32 -lgdi32
+
+./simulation
+'''
+
+---
+
+## 🔮 Future Improvement
+- RK4 integrator
+- Barnes-Hut optimization
+- GPU acceleration
+- Interactive UI
+- 3D rendering
