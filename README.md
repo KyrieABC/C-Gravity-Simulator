@@ -58,7 +58,7 @@ $$
 
 ## 🏗️ System Architecture
 ```
-gravity_sim/
+C-Gravity-Simulator/
 │
 ├── main.cpp
 │
