@@ -57,7 +57,7 @@ $$
 ---
 
 ## 🏗️ System Architecture
-'''
+```
 gravity_sim/
 │
 ├── main.cpp
@@ -75,7 +75,7 @@ gravity_sim/
 │
 ├── utils/
 │ ├── integrator.h
-'''
+```
 
 ---
 
@@ -135,13 +135,13 @@ for each frame:
 - GCC (g++)
 - OpenGL support
 ### Install Dependencies
-'''
+```Bash
 pacman -S --needed \
 mingw-w64-ucrt-x86_64-gcc \
 mingw-w64-ucrt-x86_64-glfw \
 mingw-w64-ucrt-x86_64-glew \
 mingw-w64-ucrt-x86_64-glm
-'''
+```
 
 ---
 
