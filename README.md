@@ -149,7 +149,7 @@ mingw-w64-ucrt-x86_64-glm
 ```Bash
 g++ main.cpp physics/physics.cpp renderer/renderer.cpp -o simulator -lglfw3 -lglew32 -lopengl32 -lgdi32
 
-./simulation
+./simulator
 ```
 
 ---
